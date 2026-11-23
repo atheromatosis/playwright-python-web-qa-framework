@@ -1,0 +1,2 @@
+demo_site/*.html linguist-vendored
+demo_site/**/*.html linguist-vendored
