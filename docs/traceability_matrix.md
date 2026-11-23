@@ -1,0 +1,16 @@
+# Requirements Traceability Matrix (RTM)
+
+| Req ID | Business / Quality Requirement | ISTQB Technique | Automated Test Module & Function | Marker |
+| :--- | :--- | :--- | :--- | :--- |
+| **REQ-01** | Staging site must return HTTP 200 and expose zero PHP/WP runtime errors after plugin updates[span_12](start_span)[span_12](end_span). | Smoke / Dynamic Analysis | `tests/smoke_regression/test_post_update_health.py::test_page_loads_with_200_and_no_php_errors` | `@smoke` |
+| **REQ-02** | Zero uncaught JavaScript exceptions or console errors during page render[span_13](start_span)[span_13](end_span). | Dynamic Analysis | `tests/smoke_regression/test_post_update_health.py::test_no_uncaught_javascript_or_console_errors` | `@smoke` |
+| **REQ-03** | All critical CTAs and image assets must render properly without broken links. | Smoke Testing | `tests/smoke_regression/test_post_update_health.py::test_all_images_and_critical_sections_render_properly` | `@smoke` |
+| **REQ-04** | Valid contact form submission with GDPR consent must reach backend API (`200 OK`) and confirm delivery[span_14](start_span)[span_14](end_span). | End-to-End Testing | `tests/e2e/test_contact_form_gdpr.py::test_successful_form_submission_with_gdpr_consent` | `@e2e` |
+| **REQ-05** | Form submission without mandatory GDPR consent must be blocked with a user-friendly alert[span_15](start_span)[span_15](end_span). | Decision Table Testing | `tests/e2e/test_contact_form_gdpr.py::test_submission_blocked_without_gdpr_consent` | `@e2e` |
+| **REQ-06** | Invalid email formats must be rejected with HTTP 422 validation error. | Equivalence Partitioning | `tests/e2e/test_contact_form_gdpr.py::test_invalid_email_equivalence_partitions` | `@e2e` |
+| **REQ-07** | Message field must enforce length boundaries (`min=5`, `max=2000` chars). | Boundary Value Analysis | `tests/e2e/test_contact_form_gdpr.py::test_message_length_boundary_values` | `@e2e` |
+| **REQ-08** | Mobile viewports (iPhone/Android) must render without horizontal overflow and support hamburger menu[span_16](start_span)[span_16](end_span). | Compatibility (RWD) | `tests/mobile_ux/test_mobile_usability.py::test_mobile_layout_and_navigation_menu` | `@mobile` |
+| **REQ-09** | Phone CTA must use clickable `tel:` URI and meet `>= 44x44 px` touch target guidelines[span_17](start_span)[span_17](end_span). | Usability Testing | `tests/mobile_ux/test_mobile_usability.py::test_phone_cta_link_is_clickable_and_thumb_friendly` | `@mobile` |
+| **REQ-10** | Server must enforce `X-Content-Type-Options` and `X-Frame-Options` security headers. | Security Testing | `tests/security/test_wp_security.py::test_http_security_headers_present` | `@security` |
+| **REQ-11** | Public directory listing under `/wp-content/uploads/` must be restricted (`403/404`)[span_18](start_span)[span_18](end_span). | Security Testing | `tests/security/test_wp_security.py::test_uploads_directory_listing_is_forbidden` | `@security` |
+| **REQ-12** | Contact form inputs must safely handle XSS payloads without script execution or HTTP 500[span_19](start_span)[span_19](end_span). | Error Guessing / Security | `tests/security/test_wp_security.py::test_contact_form_handles_xss_payload_safely` | `@security` |

@@ -1,13 +1,12 @@
 from pathlib import Path
 from fastapi import FastAPI, Request, HTTPException
 from fastapi.responses import HTMLResponse, JSONResponse
-from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel, EmailStr, Field
 
 app = FastAPI(title="WordPress Staging Mock Environment")
 
 BASE_DIR = Path(__file__).resolve().parent
-templates = Jinja2Templates(directory=str(BASE_DIR / "templates"))
+INDEX_HTML_PATH = BASE_DIR / "templates" / "index.html"
 
 
 class ContactFormPayload(BaseModel):
@@ -27,8 +26,8 @@ async def add_security_headers(request: Request, call_next):
 
 
 @app.get("/", response_class=HTMLResponse)
-async def home(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
+async def home():
+    return HTMLResponse(content=INDEX_HTML_PATH.read_text(encoding="utf-8"))
 
 
 @app.post("/wp-json/contact/v1/submit")
