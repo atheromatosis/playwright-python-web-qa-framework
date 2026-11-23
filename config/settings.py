@@ -17,3 +17,5 @@ settings = Settings()
 # trigger linguist
 
 """Runtime configuration module."""
+
+"""Runtime configuration module."""
