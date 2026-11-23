@@ -11,7 +11,6 @@ class BasePage:
         self.console_errors: list[str] = []
         self.page_errors: list[str] = []
 
-        # Capture uncaught JS exceptions and console errors during page lifecycle
         self.page.on("pageerror", lambda err: self.page_errors.append(str(err)))
         self.page.on(
             "console",
